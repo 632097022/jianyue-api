@@ -124,10 +124,66 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      class1: [{
+        name: '赛事资讯',
+        Cname: '韦德迎着塔图姆投进三分，完成本节最后一攻',
+        avatar: 'static/nba.png' },
+
+
+      {
+        name: '实政新闻',
+        Cname: '习主席这些话，致敬民族最闪亮的坐标',
+        avatar: 'static/u.png' },
+
+
+      {
+        name: '历史旧闻',
+        Cname: '国民党整编74师之谜',
+        avatar: 'static/book.png' },
+
+
+      {
+        name: '军事频道',
+        Cname: '命悬一线的俄罗斯航母舰载机',
+        avatar: 'static/air.png' },
+
+
+      {
+        name: '国际新闻',
+        Cname: '阿富汗是如何从天堂坠入地狱',
+        avatar: 'static/new.png' },
+
+
+      {
+        name: '天气预报',
+        Cname: '华北各省市气温回升',
+        avatar: 'static/t.png' }] };
+
+
+
+
+
+
 
   },
   onLoad: function onLoad() {
@@ -163,17 +219,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("view", { staticClass: "content" }, [
-    _c("image", {
-      staticClass: "logo",
-      attrs: { src: "../../static/logo.png" }
-    }),
-    _c("view", [
-      _c("text", { staticClass: "title" }, [_vm._v(_vm._s(_vm.title))])
-    ])
-  ])
+  return _c(
+    "view",
+    { staticClass: "content" },
+    [
+      _vm._m(0),
+      _vm._l(_vm.class1, function(course, index) {
+        return _c("view", { key: index, staticClass: "card" }, [
+          _c("view", { staticClass: "cover" }, [
+            _c("img", { attrs: { src: course.avatar } })
+          ]),
+          _c(
+            "view",
+            { staticClass: "course-clas" },
+            [
+              _c("text", [_vm._v(_vm._s(course.name))]),
+              _c("p", { staticClass: "name" }, [_vm._v(_vm._s(course.Cname))])
+            ],
+            1
+          ),
+          _c("view", { staticClass: "course-code" }, [
+            _c("text", [_vm._v(_vm._s(course.Tname))])
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("view", { staticClass: "top1" }, [
+      _c("view", { staticClass: "cover1" }, [_c("text", [_vm._v("话题»")])]),
+      _c("view", [
+        _c("img", { attrs: { src: "static/sc1.png" } }),
+        _c("img", { attrs: { src: "static/sc.png" } })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

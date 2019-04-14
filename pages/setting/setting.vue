@@ -1,142 +1,188 @@
 <template>
-	<view class="container">
-		<view class="list">
-			<view class="list-item"><text>文章推送</text></view>
-			<view class="list-item"><text>新消息推送</text></view>
-			<navigator url="../user_info/user_info">个人资料</navigator>
-		</view>
-		<button @tap="logout" class="green-btn">退出当前账号</button>
-	</view>
-</template>
-
-<script>
-export default {
-	data() {
-		return {};
-	},
-	onLoad() {
-		uni.setNavigationBarTitle({
-			title: '设置'
-		});
-	},
-	methods: {
-		logout: function() {
-			console.log('log out');
-			uni.removeStorageSync('login_key');
-			uni.showToast({
-				title: '已经退出当前账号'
-			});
-			uni.navigateBack();
-		}
-	}
-};
-</script>
-
-<style></style>
-
-<!-- <template>
-	<view class="container">
-		<view class="list">
-			<text class="list-head">常规设置</text>
-			<uni-list>
-				<uni-list-item title="更改主页"></uni-list-item>
-				<uni-list-item title="编辑个人简介"></uni-list-item>
-				<uni-list-item title="查看消息" show-badge="true" badge-text="5"></uni-list-item>
-				<uni-list-item
-					title="开启消息通知"
-					show-switch="true"
-					show-arrow="false"
-				></uni-list-item>
-			</uni-list>
-			<text class="list-head">其他设置</text>
-			<uni-list>
-				<uni-list-item
-					title="软件更新"
-					show-arrow="false"
-					show-extra-icon="true"
-					:extra-icon="{ color: '	#FF8247', size: '22', type: 'refresh-filled' }"
-				></uni-list-item>
-				<uni-list-item
-					title="未绑定"
-					show-arrow="false"
-					show-extra-icon="true"
-					:extra-icon="{ color: '	#D3D3D3', size: '22', type: 'weibo' }"
-				></uni-list-item>
-				<uni-list-item
-					title="微信绑定"
-					show-arrow="false"
-					show-extra-icon="true"
-					:extra-icon="{ color: '#4cd964', size: '22', type: 'weixin' }"
-				></uni-list-item>
-				<uni-list-item
-					title="未绑定"
-					show-arrow="false"
-					show-extra-icon="true"
-					:extra-icon="{ color: '	#D3D3D3', size: '22', type: 'qq' }"
-				></uni-list-item>
-			</uni-list>
-			<text class="list-head1"></text>
-			<uni-list>
-				<uni-list-item title="绑定账号遇到问题"></uni-list-item>
-				<uni-list-item title="重置密码"></uni-list-item>
-			</uni-list>
-			<view class="list-item">
-				<button type="primary" @tap="logout">退出当前账号</button>
+	<view class="center">
+		<view class="logo" @click="goLogin" :hover-class="!login ? 'logo-hover' : ''">
+			<image class="logo-img" :src="login ? uerInfo.avatarUrl :avatarUrl"></image>
+			<view class="logo-title">
+				<navigator url="../write/write"><text class="uer-name">Hi，{{login ? uerInfo.name : '刘畅'}}</text></navigator>
+				<text class="go-login navigat-arrow" v-if="!login">&#xe65e;</text>
 			</view>
 		</view>
+		<view class="center-list">
+			<view class="center-list-item border-bottom">
+				<text class="list-icon">&#xe60f;</text>
+				<text class="list-text">帐号管理</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+			<view class="center-list-item">
+				<text class="list-icon">&#xe639;</text>
+				<text class="list-text">新消息通知</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item border-bottom">
+				<text class="list-icon">&#xe60b;</text>
+				<text class="list-text">帮助与反馈</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+			<view class="center-list-item">
+				<text class="list-icon">&#xe65f;</text>
+				<text class="list-text">服务条款及隐私</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe614;</text>
+				<text class="list-text">关于应用</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+				
+			
+				
+			</view>
+		</view>
+		<navigator url="../write/write"> <button type="primary" -if>发表文章</button></navigator>
 	</view>
+	
 </template>
 
 <script>
-import uniList from '@/components/uni-list/uni-list.vue';
-import uniListItem from '@/components/uni-list-item/uni-list-item.vue';
-/* import 导入的其它组件 */
-import uniIcon from '@/components/uni-icon/uni-icon.vue';
-export default {
-	data() {
-		return {
-			/* ... */
-		};
-	},
-	components: {
-		uniList,
-		uniListItem,
-		uniIcon
-	},
-	onLoad() {
-		uni.setNavigationBarTitle({
-			title: '设置'
-		});
-	},
-	methods: {
-		logout: function() {
-			console.log('log out');
-			uni.removeStorageSync('login_key');
-			uni.showToast({
-				title: '已经退出当前账号'
-			});
-			uni.navigateBack();
+	export default {
+		data() {
+			return {
+				login: false,
+				avatarUrl: "../../static/logo.png",
+				uerInfo: {}
+			}
+		},
+		methods: {
+			goLogin() {
+				if (!this.login) {
+					console.log("点击前往登录")
+				}
+			}
 		}
 	}
-};
 </script>
 
-<style scoped>
-.list-head {
-	display: flex;
-	font-size: 12px;
-	color: #ff6a6a;
-	align-items: center;
-	height: 30px;
-	margin-left: 15px;
-}
-.list-head1 {
-	height: 15px;
-	background: #eeeeee;
-}
+<style>
+	@font-face {
+		font-family: texticons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('https://at.alicdn.com/t/font_984210_5cs13ndgqsn.ttf') format('truetype');
+	}
 
-uni-list-item {
-	display: flex;
-}
+	page,
+	view {
+		display: flex;
+	}
+
+	page {
+		background-color: #f8f8f8;
+	}
+
+	.center {
+		flex-direction: column;
+	}
+
+	.logo {
+		width: 750upx;
+		height: 240upx;
+		padding: 20upx;
+		box-sizing: border-box;
+		background-color: #4cd964;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.logo-hover {
+		opacity: 0.8;
+	}
+
+	.logo-img {
+		width: 150upx;
+		height: 150upx;
+		border-radius: 150upx;
+	}
+
+	.logo-title {
+		height: 150upx;
+		flex: 1;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		margin-left: 20upx;
+	}
+
+	.uer-name {
+		height: 60upx;
+		line-height: 60upx;
+		font-size: 38upx;
+		color: #FFFFFF;
+	}
+
+	.go-login.navigat-arrow {
+		font-size: 38upx;
+		color: #FFFFFF;
+	}
+
+	.login-title {
+		height: 150upx;
+		align-items: self-start;
+		justify-content: center;
+		flex-direction: column;
+		margin-left: 20upx;
+	}
+
+	.center-list {
+		background-color: #FFFFFF;
+		margin-top: 20upx;
+		width: 750upx;
+		flex-direction: column;
+	}
+
+	.center-list-item {
+		height: 90upx;
+		width: 750upx;
+		box-sizing: border-box;
+		flex-direction: row;
+		padding: 0upx 20upx;
+	}
+
+	.border-bottom {
+		border-bottom-width: 1upx;
+		border-color: #c8c7cc;
+		border-bottom-style: solid;
+	}
+
+	.list-icon {
+		width: 40upx;
+		height: 90upx;
+		line-height: 90upx;
+		font-size: 34upx;
+		color: #4cd964;
+		text-align: center;
+		font-family: texticons;
+		margin-right: 20upx;
+	}
+
+	.list-text {
+		height: 90upx;
+		line-height: 90upx;
+		font-size: 34upx;
+		color: #555;
+		flex: 1;
+		text-align: left;
+	}
+
+	.navigat-arrow {
+		height: 90upx;
+		width: 40upx;
+		line-height: 90upx;
+		font-size: 34upx;
+		color: #555;
+		text-align: right;
+		font-family: texticons;
+	}
 </style>
- -->

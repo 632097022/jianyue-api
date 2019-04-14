@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/message/message",
     "pages/my/my",
-    "pages/signin/signin",
     "pages/write/write",
     "pages/info/info",
     "pages/setting/setting",
-    "pages/user_info/user_info",
-    "pages/user_name/user_name"
+    "pages/register/register",
+    "pages/register_psd/register_psd",
+    "pages/uu/uu",
+    "pages/signin/signin"
   ],
   "subPackages": [],
   "window": {

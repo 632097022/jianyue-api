@@ -1,4 +1,7 @@
 
+page.data-v-27435ce0 {
+		background-color: #f8f8f8;
+}
 .top.data-v-27435ce0 {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -38,7 +41,7 @@
 	        justify-content: center;
 }
 .setting-txt.data-v-27435ce0{
-	color: #00B26A;
+	color: #4cd964;
 	margin-left: 15px;
 }
 .center.data-v-27435ce0{
@@ -67,7 +70,7 @@
 	        flex-direction: column;
 	text-align: center;
 	
-	border-right: 1px solid #eee;
+	border-right: 1px solid #4cd964;
 }
 .title.data-v-27435ce0{
 	font-size: 14pt;

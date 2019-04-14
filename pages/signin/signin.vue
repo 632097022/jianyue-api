@@ -1,87 +1,111 @@
 <template>
-	<view class="uni-flex uni-column container">
-		<input
-			class="uni-input"
-			type="number"
-			placeholder="输入手机号"
-			v-model="userDTO.mobile"
-			required="required"
-		/>
-		<input
-			class="uni-input"
-			password
-			type="text"
-			placeholder="输入密码"
-			v-model="userDTO.password"
-			required="required"
-		/>
-		<button type="primary" @tap="signIn(userDTO)">登录</button>
+	<view class="content">
+		<view class="login-bg">
+			<view class="login-card">
+				<view class="login-head">请输入你的账户</view>
+				<view class="login-input login-margin-b">
+					<input type="number" placeholder="手机号或者邮箱" />
+				</view>
+				<view class="login-input">
+					<input type="number" placeholder="请输入密码(8-16位)" />
+				</view>
+				<view class="login-function">
+					<view class="login-forget" @click="go_forget">忘记密码</view>
+					<view class="login-register" @click="go_register">快速注册></view>
+				</view>
+			</view>
+		</view>
+		<view class="login-btn">
+			
+			<navigator url="../setting/setting"> <button type="primary" -if>登录</button></navigator>
+		</view>
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			userDTO: {
-				mobile: '',
-				password: ''
+	export default {
+		data() {
+			return {
+				title: 'Hello'
 			}
-		};
-	},
-	onLoad() {
-		uni.setNavigationBarTitle({
-			title: '登录'
-		});
-	},
-	methods: {
-		signIn: function(userDTO) {
-			var _this = this;
-			// console.log(userDTO.mobile + ',' + userDTO.password);
-			uni.request({
-				url: 'http://192.168.43.83:8080/api/user/sign_in',
-				method: 'POST',
-				data: {
-					mobile: userDTO.mobile,
-					password: userDTO.password
-				},
-				header: {
-					'content-type': 'application/json'
-				},
-				success: res => {
-					// console.log(res.data.data);
-					if (res.data.code == 0) {
-						//将用户数据记录在本地存储
-						uni.setStorageSync('login_key', {
-							userId: res.data.data.id,
-							nickname: res.data.data.nickname,
-							avatar: res.data.data.avatar,
-							token: res.data.data.token,
-							login: true
-						});
-						uni.showToast({
-							title: '登录成功'
-						});
-						uni.navigateBack();
-					}
-					//登录失败，弹出各种原因
-					else {
-						uni.showModal({
-							title: '提示',
-							content: res.data.msg
-						});
-					}
-				}
-			});
+		},
+		onLoad() {
+
+		},
+		methods: {
+			go_forget(){
+				uni.navigateTo({
+				    url: '../../pages/forget/forget'
+				})
+			},
+			go_register(){
+				uni.navigateTo({
+					url: '../../pages/register/register'
+				})
+			}
+			
 		}
 	}
-};
 </script>
 
-<style scoped>
-input {
-	height: 50px;
-	border-bottom: 1px solid #eee;
-	margin-bottom: 5px;
-}
+<style>
+	.landing{
+		height: 84upx;
+		line-height: 84upx;
+		border-radius: 44upx;
+		font-size: 32upx;
+		background: linear-gradient(left,#FF978D, #FFBB69);
+	}
+	.login-btn{
+		padding: 10upx 20upx;
+		margin-top: 350upx;
+	}
+	.login-function{
+		overflow: auto;
+		padding: 20upx 20upx 30upx 20upx;
+	}
+	.login-forget{
+		float: left;
+		font-size: 26upx;
+		color: #999;
+	}
+	.login-register{
+		color: #666;
+		float: right;
+		font-size: 26upx;
+
+	}
+	.login-input input{
+		background: #F2F5F6;
+		font-size: 28upx;
+		padding: 10upx 25upx;
+		height: 62upx;
+		line-height: 62upx;
+		border-radius: 8upx;
+	}
+	.login-margin-b{
+		margin-bottom: 25upx;
+	}
+	.login-input{
+		padding: 10upx 20upx;
+	}
+	.login-head{
+		font-size: 34upx;
+		text-align: center;
+		padding: 25upx 10upx 55upx 10upx;
+	}
+	.login-card{
+		background: #fff;
+		border-radius: 12upx;
+		padding: 10upx 25upx;
+		box-shadow: 0 6upx 18upx rgba(0,0,0,0.12);
+		position: relative;
+		margin-top: 120upx;
+	}
+	.login-bg {
+		height: 260upx;
+		padding: 25upx;
+		background: linear-gradient(	#4cd964, 	
+#4cd964);
+	}
 </style>

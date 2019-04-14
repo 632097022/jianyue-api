@@ -1,0 +1,1 @@
+<template name="c975899c"><view class="_view data-v-2541fb40 content"><view class="_view data-v-2541fb40 box"><input type="text" class="_input data-v-2541fb40 password" placeholder="请输入密码" /></view><navigator class="_navigator data-v-2541fb40 register" url="../setting/setting"><button class="_button data-v-2541fb40 rightnow">注册并登陆</button></navigator></view></template>

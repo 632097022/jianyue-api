@@ -74,15 +74,13 @@
         }
       }
     },
+    "arguments": "{\"name\":\"\",\"path\":\"\",\"query\":\"\",\"id\":0}",
     "allowsInlineMediaPlayback": true,
     "safearea": {
       "background": "#FFFFFF",
       "bottom": {
         "offset": "auto"
       }
-    },
-    "uni-app": {
-      "compilerVersion": "1.7.0"
     }
   }
 }
